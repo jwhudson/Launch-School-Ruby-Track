@@ -78,13 +78,25 @@ loop do
   end
 
   loan_duration_months = loan_duration_years * 12
+  puts (loan_duration_months)
+  prompt ("What is the Annual Percentage Rate? (APR)")
 
-  apr = rand(10)
-  monthly_percentage_rate = 0.03 / 12
-  prompt("The annual percentage rate is #{apr}%")
+  apr = nil
+  loop do
+    apr = gets.chomp.to_i / 100.0
+    if valid_number?(apr)
+      break
+    else
+      prompt("Please enter a number")
+    end
+  end
+
+  monthly_percentage_rate = apr / 12
+
 
   monthly_payment = loan_amount * ( monthly_percentage_rate / (1 - (1 +                            monthly_percentage_rate )**(-loan_duration_months)))
-  prompt(monthly_payment)
+  prompt("Your monthly repayment is #{monthly_payment.truncate(2)}")
+
 
   prompt("Would you like to calculator a new mortgage? (Y to calculate again)")
   reset = gets.chomp

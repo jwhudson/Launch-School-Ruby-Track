@@ -1,15 +1,15 @@
-#-------------------------------------------------------------#
+# ------------------------------------------------------------- #
 # A Mortgage Calculator #
-#-------------------------------------------------------------#
+# ------------------------------------------------------------- #
 
-#Three pieces of information required
-#The Loan Amount
-#The Annual Percentage Rate (APR)
-#The Loan Duration
+# Three pieces of information required
+# The Loan Amount
+# The Annual Percentage Rate (APR)
+# The Loan Duration
 
-#Calculate two things from the information above
-#Monthly Interest Rate
-#Loan Duration in Months
+# Calculate two things from the information above
+# Monthly Interest Rate
+# Loan Duration in Months
 
 # formula m = p * (j / (1 - (1 + j)**(-n)))
 # m = monthly payment
@@ -17,22 +17,22 @@
 # j = monthly interest rate
 # n = loan duration in months
 
-#-------------------------------------------------------------#
-#Pseudo Code
-#-------------------------------------------------------------#
+# ------------------------------------------------------------- #
+# Pseudo Code
+# ------------------------------------------------------------- #
 
-#GET Loan amount from user
-#SET Loan amount
-#SET Annual Percentage Rate
-#GET Loan duration from user
-#SET Loan duration
-#Process information using formula
-#SET Monthly payment = formula output
-#PRINT Monthly payment
+# GET Loan amount from user
+# SET Loan amount
+# SET Annual Percentage Rate
+# GET Loan duration from user
+# SET Loan duration
+# Process information using formula
+# SET Monthly payment = formula output
+# PRINT Monthly payment
 
-#-------------------------------------------------------------#
-#Ruby Code
-#-------------------------------------------------------------#
+# ------------------------------------------------------------- #
+# Ruby Code
+# ------------------------------------------------------------- #
 
 def prompt(message)
   puts "=> #{message}"
@@ -47,7 +47,7 @@ def integer?(num)
 end
 
 def float?(num)
-  Float(input) rescue false
+  Float(num) rescue false
 end
 
 prompt("Welcome to the Mortgage Calculator!")
@@ -73,13 +73,13 @@ loop do
     if valid_number?(loan_duration_years)
       break
     else
-      prompt ("That isn't a valid number")
+      prompt("That isn't a valid number")
     end
   end
 
   loan_duration_months = loan_duration_years * 12
-  puts (loan_duration_months)
-  prompt ("What is the Annual Percentage Rate? (APR)")
+
+  prompt("What is the Annual Percentage Rate? (APR)")
 
   apr = nil
   loop do
@@ -93,10 +93,11 @@ loop do
 
   monthly_percentage_rate = apr / 12
 
+  monthly_payment =
+    loan_amount * (monthly_percentage_rate /
+      (1 - (1 + monthly_percentage_rate)**(-loan_duration_months)))
 
-  monthly_payment = loan_amount * ( monthly_percentage_rate / (1 - (1 +                            monthly_percentage_rate )**(-loan_duration_months)))
   prompt("Your monthly repayment is #{monthly_payment.truncate(2)}")
-
 
   prompt("Would you like to calculator a new mortgage? (Y to calculate again)")
   reset = gets.chomp
